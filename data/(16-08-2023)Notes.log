@@ -1,0 +1,313 @@
+
+[root@devops script]# cd class
+[root@devops class]# vim script_037.sh
+#!/bin/bash
+
+fruit_name=("apple" "banana" "cherry" "orange")
+
+for fruit in "${fruit_name[@]}"; do
+    if [[ "$fruit" == *"an"* ]]; then
+        continue
+    fi
+    echo "Fruit: $fruit"
+done
+[root@devops class]# ./script_037.sh
+fruit :  apple
+fruit :  cherry
+
+[root@devops class]# $?
+bash: 0: command not found...
+[root@devops class]# ecgho $?
+127
+[root@devops class]#./script_037.sh
+fruit :  apple
+fruit :  cherry
+[root@devops class]# echo $?
+0
+[root@devops class]# vim script_038.sh
+#!/bin/bash
+
+while [ $count -lt 10 ];
+   do
+   echo $count;
+   ((count++));
+done
+:wq[root@devops class]# ./script_038.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+[root@devops class]# vim script_038.sh
+#!/bin/bash
+count=1
+while [ $count -lt 10 ];
+   do
+   echo $count;
+   ((count++));
+done
+[root@devops class]#./script_038.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[root@devops class]# vim script_039.sh
+ #!/bin/bash
+$num=1
+until [ $num -ge 10];
+   do
+   echo $num;
+   ((num++));
+  done
+
+[root@devops class]# vim script_039.sh./script_039.sh
+./script_039.sh: line 2: =1: command not found
+./script_039.sh: line 3: [: -ge: unary operator expected
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+[root@devops class]# vim script_039.sh
+  #!/bin/bash
+num=1
+until [ $num -ge 10 ];
+   do 
+   echo $num;
+   ((num++));
+  done
+
+[root@devops class]# vim script_039.sh./script_039.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+  
+[root@devops class]# vim scripyt_045.sh
+ #!/bin/bash
+
+while true;
+ do
+  read -p "enter a value (type 'exit' to quit): " input
+  if [ "$input" = "exit" ] ; then
+     break
+   fi
+    echo "you entered: $input"
+ done
+
+[root@devops class]# ./script_045.sh
+enter a value (type 'exit' to quit): 10
+you entered: 10
+enter a value (type 'exit' to quit): 20
+you entered: 20
+enter a value (type 'exit' to quit): exit
+[root@devops class]# clear
+[root@devops class]# vim script_046.sh
+#!/bin/bash
+
+sum=0
+while true; do
+    read -p "Enter a number (negative to quit): " num
+    if [ $num -lt 0 ]; then
+        break
+    fi
+    ((sum+=num))
+done
+echo "Sum of numbers: $sum"
+[root@devops class]# ./script_046.sh
+enter a number (negitive to quit) : 10
+enter a number (negitive to quit) : 20
+enter a number (negitive to quit) : 30
+enter a number (negitive to quit) : -5
+sum of numbers: 60
+
+[root@devops class]# vim scripyt_047.sh
+#!/bin/bash
+
+a=0
+b=1
+n=10
+count=0
+
+while [ $count -lt $n ]; do
+    echo -n "$a "
+    ((c=a+b))
+    a=$b
+    b=$c
+    ((count++))
+done
+
+[root@devops class]# ./script_047.sh
+0 1 1 2 3 5 8 13 21 34 
+[root@devops class]# clear
+[root@devops class]# vim script_048.sh
+ #!/bin/bash
+
+dir="/home"
+files=$(ls $dir)
+
+while read -r file;
+    doecho "file: $file"
+  done <<< "$files"
+
+[root@devops class]#./script_048.sh
+file: devops
+file: user001
+file: user002
+
+
+[root@devops class]# vim script_049.sh
+#!/bin/bash
+
+target=$((RANDOM % 100))
+guess=-1
+
+while [ $guess -ne $target ]; do
+    read -p "Guess the number between 0 and 99: " guess
+    if [ $guess -lt $target ]; then
+        echo "Too low!"
+    elif [ $guess -gt $target ]; then
+        echo "Too high!"
+    fi
+done
+
+[root@devops class]#./script_049.sh
+echo "Congratulations! You guessed the number $target."guess the number between 0 and 99: 10
+./script_049.sh: line 9: guess: command not found
+Too low!
+guess the number between 0 and 99: 98
+./script_049.sh: line 9: guess: command not found
+Too low!
+
+
+[root@devops class]# vim script_050.sh
+
+#!/bin/bash
+
+count=1
+while [ $count -le 10 ]; do
+    echo $count
+    if [ $count -eq 5 ]; then
+        break
+    fi
+    ((count++))
+done
+[root@devops class]# ./script_050.sh
+1
+2
+3
+4
+5
+
+[root@devops class]# vim script_051.sh
+#!/bin/bash
+num=1
+while [ $num -le 10 ]; do
+    if ((num % 2 == 0)); then
+        ((num++))
+        continue
+    fi
+    echo $num
+    ((num++))
+done
+[root@devops class]# ./script_051.sh
+1
+3
+5
+7
+9
+[root@devops class]# vim script_052.sh
+#!/bin/bash
+
+while true;
+ do
+    read -p "Enter a number (0 to quit): " num
+    if [ $num -eq 0 ]; then
+        break
+    fi
+    echo "You entered: $num"
+done
+[root@devops class]#./script_052.sh
+enter a number (0 to quit): 9
+you entered: 9
+enter a number (0 to quit): 6
+you entered: 6
+enter a number (0 to quit): 0
+
+[root@devops class]# clear
+
+[root@devops class]# vim script_053.sh
+#!/bin/bash
+
+count=1
+until [ $count -gt 10 ]; 
+ do
+    echo $count
+    ((count++))
+ done
+[root@devops class]# ./script_053.sh
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[root@devops class]# 
+
+chown command example
+=======================
+[root@devops ~]# mkdir /data2
+[root@devops ~]# cd /data2
+[root@devops data2]# ls -al /data2
+total 0
+drwxr-xr-x.  2 root root   6 Aug 16 16:50 .
+dr-xr-xr-x. 20 root root 262 Aug 16 16:50 ..
+[root@devops data2]# chmod 777 /data2
+
+[root@devops data2]# su -l user001
+
+[user001@devops ~]$ cd /data2
+[user001@devops data2]$ touch abc.txt
+[user001@devops data2]$ ls -al abc.txt
+-rw-r--r--. 1 user001 user001 0 Aug 16 17:08 abc.txt
+[user001@devops data2]$ exit
+logout
+
+
+[root@devops data2]# ls -al abc.txt
+-rw-r--r--.  1 user001 user001   0 Aug 16 17:08 abc.txt
+
+[root@devops data2]# chown -v user001:root abc.txt
+changed ownership of 'abc.txt' from user001:user001 to user001:root
+
+[root@devops data2]# ls -al abc.txt
+-rw-r--r--.  1 user001 root   0 Aug 16 17:08 abc.txt
+
+[root@devops data2]# 
+
+

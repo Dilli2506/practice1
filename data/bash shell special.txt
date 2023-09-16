@@ -1,0 +1,33 @@
+In Bash shell scripting, the `$` symbol is used for various purposes, including variable expansion, command substitution, and special variables. Here's a breakdown of its common uses:
+
+1. **Variable Expansion**:
+   - `$variable_name`: Accesses the value of a variable.
+   - Example: `name="John"` and `echo "Hello, $name!"` would output `Hello, John!`.
+
+2. **Command Substitution**:
+   - `$(`command`)` or `` `command` ``: Executes the specified command and substitutes its output.
+   - Example: `current_date=$(date +%Y-%m-%d)` assigns the current date to the `current_date` variable.
+
+3. **Special Variables**:
+   - `$0`: The name of the script or shell.
+   - `$1`, `$2`, ...: Positional parameters (arguments) passed to the script or function.
+   - `$#`: The number of positional parameters.
+   - `$*` or `$@`: All positional parameters.
+   - `$$`: Process ID (PID) of the current shell.
+   - `$?`: Exit status of the last executed command.
+   - `$_`: The last argument to the last command.
+   - Example: `echo "Script name: $0"`.
+
+4. **Brace Expansion**:
+   - `${variable_name}`: Used for more complex variable names or when disambiguating variable names.
+   - Example: `echo "Hello, ${name}!"`.
+
+5. **Arithmetic Expansion**:
+   - `$((expression))`: Evaluates the arithmetic expression and substitutes the result.
+   - Example: `x=5; y=$((x + 3))` sets `y` to 8.
+
+6. **Escape Sequences**:
+   - `\$`: Escapes the `$` symbol to use it literally.
+   - Example: `echo "The cost is \$10."` prints "The cost is $10."
+
+The `$` symbol is a powerful feature in Bash scripting that allows you to manipulate and access variables, execute commands, and work with various special values. Understanding its different uses is essential for effective shell scripting.
